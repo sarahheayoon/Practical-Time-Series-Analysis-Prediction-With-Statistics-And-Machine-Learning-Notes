@@ -1,0 +1,27 @@
+---
+title: "Chp3-R codes"
+author: "Sarah"
+date: '2022-07-07'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EuStockMarket
+```{r}
+library(plotly)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+data("EuStockMarkets")
+stocks <- as.data.frame(EuStockMarkets) %>%
+  gather(index, price) %>%
+  mutate(time = rep(time(EuStockMarkets), 4))
+
+stocks %>%
+  ggplot(aes(x=time, y=price, color=index)) +
+  geom_line()
+````
+
